@@ -131,7 +131,10 @@ class ManifestManager {
       );
     }
 
-    if (isDev()) {
+    if (
+      isDev() &&
+      !(process.env['MF_SSR_PRJ'] && compiler.options.target === 'async-node')
+    ) {
       logger.info(
         `Manifest Link: ${chalk.cyan(
           `${
